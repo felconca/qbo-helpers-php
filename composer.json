@@ -2,8 +2,6 @@
   "name": "felconca/qbo-helpers",
   "description": "QuickBooks Online PHP helper package",
   "type": "library",
-  "minimum-stability": "dev",
-  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "QuickBooksOnlineHelper\\": "src/QuickBooksOnlineHelper/"
@@ -16,12 +14,6 @@
     {
       "name": "Felcon Albaladejo",
       "email": "felcon.albaladejo@gmail.com"
-    }
-  ],
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/felconca/QuickBooks-REST-Helpers.git"
     }
   ]
 }
