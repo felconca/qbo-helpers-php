@@ -1,0 +1,19 @@
+{
+  "name": "felconca/qbo-helpers",
+  "description": "QuickBooks Online PHP helper package",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "QuickBooksOnlineHelper\\": "src/QuickBooksOnlineHelper/"
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  },
+  "authors": [
+    {
+      "name": "Felcon Albaladejo",
+      "email": "felcon.albaladejo@gmail.com"
+    }
+  ]
+}
