@@ -15,5 +15,11 @@
       "name": "Felcon Albaladejo",
       "email": "felcon.albaladejo@gmail.com"
     }
+  ],
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/felconca/QuickBooks-REST-Helpers.git"
+    }
   ]
 }
