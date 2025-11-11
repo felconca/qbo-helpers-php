@@ -2,19 +2,21 @@
   "name": "felconca/qbo-helpers",
   "description": "QuickBooks Online PHP helper package",
   "type": "library",
-  "autoload": {
-    "psr-4": {
-      "QuickBooksOnlineHelper\\": "src/QuickBooksOnlineHelper/"
-    }
-  },
-  "require": {
-    "php": ">=7.4"
-  },
   "license": "MIT",
   "authors": [
     {
       "name": "Felcon Albaladejo",
       "email": "felcon.albaladejo@gmail.com"
     }
-  ]
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "QuickBooksOnlineHelper\\": "src/QuickBooksOnlineHelper/"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
 }
