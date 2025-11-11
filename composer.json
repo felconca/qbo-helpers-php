@@ -7,10 +7,8 @@
       "QuickBooksOnlineHelper\\": "src/QuickBooksOnlineHelper/"
     }
   },
-  "minimum-stability": "dev",
   "require": {
-    "php": ">=7.4",
-    "felconca/qbo-helpers": "dev-master"
+    "php": ">=7.4"
   },
   "authors": [
     {
