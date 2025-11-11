@@ -2,6 +2,8 @@
   "name": "felconca/qbo-helpers",
   "description": "QuickBooks Online PHP helper package",
   "type": "library",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "autoload": {
     "psr-4": {
       "QuickBooksOnlineHelper\\": "src/QuickBooksOnlineHelper/"
