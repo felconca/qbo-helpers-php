@@ -70,28 +70,28 @@ class QBO
 
         switch ($this->mode) {
             case 'create':
-                $data = $args[0] ?? [];
+                $data = isset($args[0]) ? $args[0] : [];
                 return $service->create($entity, $companyId, $accessToken, $data, '', 73, $sandbox);
 
             case 'update':
-                $data = $args[0] ?? [];
+                $data = isset($args[0]) ? $args[0] : [];
                 return $service->update($entity, $companyId, $accessToken, $data, '', 73, $sandbox);
 
             case 'findById':
-                $id = $args[0] ?? null;
+                $id = isset($args[0]) ? $args[0] : null;
                 return $service->findById($entity, $id, $companyId, $accessToken, 73, $sandbox);
 
             case 'findAll':
-                $filter = $args[0] ?? '';
+                $filter = isset($args[0]) ? $args[0] : '';
                 return $service->findAll($entity, $companyId, $accessToken, $filter, 73, $sandbox);
 
             case 'delete':
-                $id = $args[0] ?? null;
-                $token = $args[1] ?? null;
+                $id = isset($args[0]) ? $args[0] : null;
+                $token = isset($args[1]) ? $args[1] : null;
                 return $service->delete($entity, $id, $token, $companyId, $accessToken, 73, $sandbox);
 
             case 'query':
-                $where = $args[0] ?? '';
+                $where = isset($args[0]) ? $args[0] : '';
                 // Example: QBO::query()->Invoice("WHERE DocNumber = '101'")
                 $queryString = "SELECT * FROM $entity " . $where;
                 return $service->query($queryString, $companyId, $accessToken, '', 73, $sandbox);
