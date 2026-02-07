@@ -7,7 +7,7 @@ class QuickBooksOnline
     /**
      * Fetch all entities
      */
-    public function findAll($entity, $companyId, $accessToken, $filter = "", $version = 73, $sandbox = false)
+    public function findAll($entity, $companyId, $accessToken, $filter = "", $version = 75, $sandbox = false)
     {
         $endpoint = $sandbox
             ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
@@ -23,20 +23,21 @@ class QuickBooksOnline
     /**
      * Fetch entity by ID
      */
-    public function findById($entity, $id, $companyId, $accessToken, $version = 73, $sandbox = false)
+    public function findById($entity, $id, $companyId, $accessToken, $version = 75, $sandbox = false)
     {
         $endpoint = $sandbox
             ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
             : "https://quickbooks.api.intuit.com/v3/company";
 
-        $url = "$endpoint/$companyId/$entity/$id";
+        $entity = strtolower($entity);
+        $url = "$endpoint/$companyId/$entity/$id?minorversion=$version";
         return $this->makeRequest("GET", $url, $accessToken);
     }
 
     /**
      * Create new entity
      */
-    public function create($entity, $companyId, $accessToken, $data, $includes = "", $version = 73, $sandbox = false)
+    public function create($entity, $companyId, $accessToken, $data, $includes = "", $version = 75, $sandbox = false)
     {
         $endpoint = $sandbox
             ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
@@ -50,7 +51,7 @@ class QuickBooksOnline
     /**
      * Update entity
      */
-    public function update($entity, $companyId, $accessToken, $data, $includes = "", $version = 73, $sandbox = false)
+    public function update($entity, $companyId, $accessToken, $data, $includes = "", $version = 75, $sandbox = false)
     {
         $endpoint = $sandbox
             ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
@@ -64,7 +65,7 @@ class QuickBooksOnline
     /**
      * Delete entity
      */
-    public function delete($entity, $id, $syncToken, $companyId, $accessToken, $version = 73, $sandbox = false)
+    public function delete($entity, $id, $syncToken, $companyId, $accessToken, $version = 75, $sandbox = false)
     {
         $endpoint = $sandbox
             ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
@@ -80,14 +81,27 @@ class QuickBooksOnline
     /**
      * Run raw query
      */
-    public function query($query, $companyId, $accessToken, $filter = "", $version = 73, $sandbox = false)
+    // public function query($query, $companyId, $accessToken, $filter = "", $version = 75, $sandbox = false)
+    // {
+    //     $endpoint = $sandbox
+    //         ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
+    //         : "https://quickbooks.api.intuit.com/v3/company";
+
+    //     $stmt = $filter == "" ? "" : " $filter";
+    //     $query = urlencode($query . $stmt);
+    //     $url = "$endpoint/$companyId/query?query=$query&minorversion=$version";
+
+    //     return $this->makeRequest("GET", $url, $accessToken);
+    // }
+
+
+    public function query($query, $companyId, $accessToken, $version = 75, $sandbox = false)
     {
         $endpoint = $sandbox
             ? "https://sandbox-quickbooks.api.intuit.com/v3/company"
             : "https://quickbooks.api.intuit.com/v3/company";
 
-        $stmt = $filter == "" ? "" : " $filter";
-        $query = urlencode($query . $stmt);
+        $query = urlencode($query);
         $url = "$endpoint/$companyId/query?query=$query&minorversion=$version";
 
         return $this->makeRequest("GET", $url, $accessToken);

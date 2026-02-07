@@ -44,10 +44,21 @@ class QBO
     {
         return new static('delete');
     }
-    public static function query()
+    public static function query(string $query)
     {
-        return new static('query');
+        if (!self::$service) {
+            throw new Exception("QBO not initialized. Call QBO::setAuth() first.");
+        }
+
+        return self::$service->query(
+            $query,
+            self::$companyId,
+            self::$accessToken,
+            75,
+            self::$sandbox
+        );
     }
+
 
     private $mode;
 
@@ -71,30 +82,35 @@ class QBO
         switch ($this->mode) {
             case 'create':
                 $data = isset($args[0]) ? $args[0] : [];
-                return $service->create($entity, $companyId, $accessToken, $data, '', 73, $sandbox);
+                return $service->create($entity, $companyId, $accessToken, $data, '', 75, $sandbox);
 
             case 'update':
                 $data = isset($args[0]) ? $args[0] : [];
-                return $service->update($entity, $companyId, $accessToken, $data, '', 73, $sandbox);
+                return $service->update($entity, $companyId, $accessToken, $data, '', 75, $sandbox);
 
             case 'findById':
                 $id = isset($args[0]) ? $args[0] : null;
-                return $service->findById($entity, $id, $companyId, $accessToken, 73, $sandbox);
+                return $service->findById($entity, $id, $companyId, $accessToken, 75, $sandbox);
 
             case 'findAll':
                 $filter = isset($args[0]) ? $args[0] : '';
-                return $service->findAll($entity, $companyId, $accessToken, $filter, 73, $sandbox);
+                return $service->findAll($entity, $companyId, $accessToken, $filter, 75, $sandbox);
 
             case 'delete':
                 $id = isset($args[0]) ? $args[0] : null;
                 $token = isset($args[1]) ? $args[1] : null;
-                return $service->delete($entity, $id, $token, $companyId, $accessToken, 73, $sandbox);
+                return $service->delete($entity, $id, $token, $companyId, $accessToken, 75, $sandbox);
 
-            case 'query':
-                $where = isset($args[0]) ? $args[0] : '';
-                // Example: QBO::query()->Invoice("WHERE DocNumber = '101'")
-                $queryString = "SELECT * FROM $entity " . $where;
-                return $service->query($queryString, $companyId, $accessToken, '', 73, $sandbox);
+                // case 'query':
+                //     $where = isset($args[0]) ? $args[0] : '';
+                //     // Example: QBO::query()->Invoice("WHERE DocNumber = '101'")
+                //     $queryString = "SELECT * FROM $entity " . $where;
+                //     return $service->query($queryString, $companyId, $accessToken, '', 75, $sandbox);
+                // case 'query':
+                //     $query = isset($args[0]) ? $args[0] : '';
+                //     // Example: QBO::query()->Invoice("select * from Invoice where DocNumber = '101'")
+                //     // Now expects a full query string, not just a where clause
+                //     return $service->query($query, $companyId, $accessToken, '', 75, $sandbox);
 
             default:
                 throw new Exception("Invalid operation mode: {$this->mode}");
